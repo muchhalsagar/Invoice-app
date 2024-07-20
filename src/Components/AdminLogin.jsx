@@ -11,8 +11,8 @@ const AdminLogin = () => {
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('adminToken');
-    if (isLoggedIn) {
-      navigate('/home');
+    if (!isLoggedIn) {
+      navigate('/');
     }
   }, [navigate]);
 
