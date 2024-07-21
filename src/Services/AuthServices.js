@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/admin/login';
+const API_URL = 'https://invoice-backend-s163.onrender.com/api/admin/login';
 
 export const login = async (username, password) => {
   try {
@@ -14,4 +14,12 @@ export const login = async (username, password) => {
     console.error('Login error:', error);
     throw error;
   }
+};
+
+export const getAuthHeader = () => {
+  const token = localStorage.getItem('adminToken');
+  if (token) {
+    return { headers: { Authorization: token } };
+  }
+  return {};
 };

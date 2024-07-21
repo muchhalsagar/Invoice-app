@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { getAuthHeader } from '../Services/AuthServices';
 
 const AddProduct = () => {
   const [file, setFile] = useState(null);
@@ -19,8 +20,10 @@ const AddProduct = () => {
     formData.append('file', file);
 
     try {
-      await axios.post('http://localhost:5000/api/products/upload', formData, {
+      await axios.post('https://invoice-backend-s163.onrender.com/api/products/upload', formData, {
+        ...getAuthHeader(),
         headers: {
+          ...getAuthHeader().headers,
           'Content-Type': 'multipart/form-data'
         }
       });
