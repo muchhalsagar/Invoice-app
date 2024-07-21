@@ -15,7 +15,7 @@ const InvoiceForm = () => {
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const res = await axios.get('https://invoice-backend-s163.onrender.com/api/invoices', getAuthHeader());
+        const res = await axios.get('http://localhost:5000/api/invoices', getAuthHeader());
         setInvoices(res.data);
       } catch (err) {
         console.error(err.response.data);
@@ -27,11 +27,11 @@ const InvoiceForm = () => {
   useEffect(() => {
     const searchInvoices = async () => {
       if (searchTerm.trim() === '') {
-        const res = await axios.get('https://invoice-backend-s163.onrender.com/api/invoices', getAuthHeader());
+        const res = await axios.get('http://localhost:5000/api/invoices', getAuthHeader());
         setInvoices(res.data);
       } else {
         try {
-          const res = await axios.get(`https://invoice-backend-s163.onrender.com/api/invoices/search?term=${searchTerm}`, getAuthHeader());
+          const res = await axios.get(`http://localhost:5000/api/invoices/search?term=${searchTerm}`, getAuthHeader());
           setInvoices(res.data);
         } catch (err) {
           console.error(err.response.data);
@@ -43,7 +43,7 @@ const InvoiceForm = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://invoice-backend-s163.onrender.com/api/invoices/${id}`, getAuthHeader());
+      await axios.delete(`http://localhost:5000/api/invoices/${id}`, getAuthHeader());
       alert('Invoice deleted successfully');
       setInvoices(invoices.filter(invoice => invoice._id !== id));
     } catch (err) {
@@ -53,7 +53,7 @@ const InvoiceForm = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('https://invoice-backend-s163.onrender.com/api/products', getAuthHeader());
+        const res = await axios.get('http://localhost:5000/api/products', getAuthHeader());
         setProducts(res.data);
       } catch (err) {
         console.error(err.response.data);
@@ -75,7 +75,7 @@ const InvoiceForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://invoice-backend-s163.onrender.com/api/invoices', { customerName, date, items }, getAuthHeader());
+      const response = await axios.post('http://localhost:5000/api/invoices', { customerName, date, items }, getAuthHeader());
       setInvoices(prevInvoices => [...prevInvoices, response.data]);
       alert('Invoice created successfully');
       setCustomerName('');

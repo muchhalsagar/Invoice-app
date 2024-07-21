@@ -17,7 +17,7 @@ const EditInvoice = () => {
     // Fetch the invoice data
     const fetchInvoice = async () => {
       try {
-        const response = await axios.get(`https://invoice-backend-s163.onrender.com/api/invoices/edit/${id}`, getAuthHeader());
+        const response = await axios.get(`http://localhost:5000/api/invoices/edit/${id}`, getAuthHeader());
         const invoiceData = response.data;
         console.log('Invoice data by id : ', invoiceData);
         setInvoice(invoiceData);
@@ -32,7 +32,7 @@ const EditInvoice = () => {
    // Fetch products (assuming you need this for the dropdown)
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://invoice-backend-s163.onrender.com/api/products', getAuthHeader()); // Adjust the endpoint as needed
+        const response = await axios.get('http://localhost:5000/api/products', getAuthHeader()); // Adjust the endpoint as needed
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -55,7 +55,7 @@ const EditInvoice = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put(`https://invoice-backend-s163.onrender.com/api/invoices/${id}`, {
+      await axios.put(`http://localhost:5000/api/invoices/${id}`, {
         customerName,
         date,
         items

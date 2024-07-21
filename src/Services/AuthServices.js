@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://invoice-backend-s163.onrender.com/api/admin/login';
+const API_URL = 'http://localhost:5000/api/admin/login';
 
 export const login = async (username, password) => {
   try {
