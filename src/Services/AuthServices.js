@@ -1,10 +1,17 @@
-// Placeholder for authentication service
+import axios from 'axios';
+
+const API_URL = 'http://localhost:5000/api/admin/login';
+
 export const login = async (username, password) => {
-    if (username === 'admin' && password === 'admin123') {
-      localStorage.setItem('adminToken', 'dummyToken');
+  try {
+    const response = await axios.post(API_URL, { username, password });
+    if (response.status === 200 && response.data.token) {
+      localStorage.setItem('adminToken', response.data.token);
       return true;
-    } else {
-      return false;
     }
-  };
-  
+    return false;
+  } catch (error) {
+    console.error('Login error:', error);
+    throw error;
+  }
+};
